@@ -5,7 +5,8 @@
  */
 package com.mycompany.methotels.pages;
 
-import com.mycompany.methotels.data.Sobe;
+
+import com.mycompany.methotels.entities.Sobe;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;
