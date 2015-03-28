@@ -4,31 +4,40 @@
  * and open the template in the editor.
  */
 package com.mycompany.methotels.pages;
+
+
+
 import com.mycompany.methotels.data.Sobe;
 import java.util.ArrayList;
-import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.Session;
 
 /**
  *
  * @author BASKETBALL IN HEART
  */
 public class DodavanjeSobe {
-    
-    @Persist
-    @Property
-    private ArrayList<Sobe> sobe;
+
     @Property
     private Sobe soba;
+    @Inject
+    private Session session;
+
+    @Property
+    private ArrayList<Sobe> sobe;
 
     void onActivate() {
         if (sobe == null) {
             sobe = new ArrayList<Sobe>();
         }
+        sobe = (ArrayList<Sobe>) session.createCriteria(Sobe.class).list();
     }
 
+    @CommitAfter
     Object onSuccess() {
-        sobe.add(soba);
+        session.persist(soba);
         return this;
     }
 }

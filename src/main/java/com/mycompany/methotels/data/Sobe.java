@@ -13,22 +13,19 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class Sobe {
     private String imeSobe;
-    private String sprat;
-    private boolean tv;
-    private boolean internet;
-    private boolean djakuzi;
-    
+    private int sprat;
+    private String tvInternetDjakuzi;
+
     @Inject
     public Sobe() {
     }
 
-    public Sobe(String imeSobe, String sprat, boolean tv, boolean internet, boolean djakuzi) {
+    public Sobe(String imeSobe, int sprat, String tvInternetDjakuzi) {
         this.imeSobe = imeSobe;
         this.sprat = sprat;
-        this.tv = tv;
-        this.internet = internet;
-        this.djakuzi = djakuzi;
+        this.tvInternetDjakuzi = tvInternetDjakuzi;
     }
+
 
     public String getImeSobe() {
         return imeSobe;
@@ -38,37 +35,20 @@ public class Sobe {
         this.imeSobe = imeSobe;
     }
 
-    public String getSprat() {
+    public int getSprat() {
         return sprat;
     }
 
-    public void setSprat(String sprat) {
+    public void setSprat(int sprat) {
         this.sprat = sprat;
     }
 
-    public boolean isTv() {
-        return tv;
+    public String getTvInternetDjakuzi() {
+        return tvInternetDjakuzi;
     }
 
-    public void setTv(boolean tv) {
-        this.tv = tv;
+    public void setTvInternetDjakuzi(String tvInternetDjakuzi) {
+        this.tvInternetDjakuzi = tvInternetDjakuzi;
     }
 
-    public boolean isInternet() {
-        return internet;
-    }
-
-    public void setInternet(boolean internet) {
-        this.internet = internet;
-    }
-
-    public boolean isDjakuzi() {
-        return djakuzi;
-    }
-
-    public void setDjakuzi(boolean djakuzi) {
-        this.djakuzi = djakuzi;
-    }
-    
-    
 }
