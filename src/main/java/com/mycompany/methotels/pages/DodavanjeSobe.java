@@ -5,10 +5,9 @@
  */
 package com.mycompany.methotels.pages;
 
-
-
 import com.mycompany.methotels.data.Sobe;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -28,11 +27,8 @@ public class DodavanjeSobe {
     @Property
     private ArrayList<Sobe> sobe;
 
-    void onActivate() {
-        if (sobe == null) {
-            sobe = new ArrayList<Sobe>();
-        }
-        sobe = (ArrayList<Sobe>) session.createCriteria(Sobe.class).list();
+    public List<Sobe> getAddresses() {
+        return session.createCriteria(Sobe.class).list();
     }
 
     @CommitAfter
