@@ -27,7 +27,7 @@ public class DodavanjeSobe {
     @Property
     private ArrayList<Sobe> sobe;
 
-    public List<Sobe> getAddresses() {
+    public List<Sobe> getSobe() {
         return session.createCriteria(Sobe.class).list();
     }
 
