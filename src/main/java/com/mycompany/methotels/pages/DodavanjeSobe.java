@@ -5,14 +5,15 @@
  */
 package com.mycompany.methotels.pages;
 
-
+import com.mycompany.methotels.entities.Hoteli;
+import com.mycompany.methotels.interfaces.HotelsDAO;
 import com.mycompany.methotels.entities.Sobe;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.Session;
 
 /**
  *
@@ -21,20 +22,33 @@ import org.hibernate.Session;
 public class DodavanjeSobe {
 
     @Property
-    private Sobe soba;
-    @Inject
-    private Session session;
-
+    private Sobe sobe;
     @Property
-    private ArrayList<Sobe> sobe;
+    private Hoteli hoteli;
+    @Property
+    private Sobe onesoba;
+    @Inject
+    private HotelsDAO hotelsDao;
+    @Property
+    private List<Sobe> sveSobe;
+    @Property
+    @Persist
+    private List<Hoteli> sviHoteli;
 
-    public List<Sobe> getSobe() {
-        return session.createCriteria(Sobe.class).list();
+    void onActivate() {
+        if (sveSobe == null) {
+            sveSobe = new ArrayList<Sobe>();
+        }
+        sveSobe = hotelsDao.getListaSvihSoba();
+    }
+
+    public String getIme() {
+        return hoteli.getIme();
     }
 
     @CommitAfter
     Object onSuccess() {
-        session.persist(soba);
+        hotelsDao.dodajSobu(sobe);
         return this;
     }
 }
