@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
@@ -74,6 +75,7 @@ public class Hoteli implements Serializable {
         this.id = id;
     }
 
+    @Validate("required")
     public String getIme() {
         return ime;
     }
@@ -82,6 +84,7 @@ public class Hoteli implements Serializable {
         this.ime = ime;
     }
 
+    @Validate("required")
     public String getAdresa() {
         return adresa;
     }
@@ -90,6 +93,7 @@ public class Hoteli implements Serializable {
         this.adresa = adresa;
     }
 
+    @Validate("required")
     public long getTelefon() {
         return telefon;
     }
@@ -98,6 +102,7 @@ public class Hoteli implements Serializable {
         this.telefon = telefon;
     }
 
+    @Validate("required")
     public Sobe getSobe() {
         return sobe;
     }

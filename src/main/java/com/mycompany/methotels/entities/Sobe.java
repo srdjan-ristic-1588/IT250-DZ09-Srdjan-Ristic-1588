@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
@@ -72,7 +73,7 @@ public class Sobe implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    @Validate("required")
     public String getImesobe() {
         return imesobe;
     }
@@ -80,7 +81,7 @@ public class Sobe implements Serializable {
     public void setImesobe(String imesobe) {
         this.imesobe = imesobe;
     }
-
+    @Validate("required")
     public int getSprat() {
         return sprat;
     }
@@ -88,7 +89,7 @@ public class Sobe implements Serializable {
     public void setSprat(int sprat) {
         this.sprat = sprat;
     }
-
+    @Validate("required")
     public String getTvInternetDjakuzi() {
         return tvInternetDjakuzi;
     }
