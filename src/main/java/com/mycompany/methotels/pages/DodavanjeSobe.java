@@ -14,6 +14,7 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONObject;
 
 /**
  *
@@ -22,33 +23,46 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 public class DodavanjeSobe {
 
     @Property
+    @Persist
     private Sobe sobe;
     @Property
-    private Hoteli hoteli;
-    @Property
     private Sobe onesoba;
-    @Inject
-    private HotelsDAO hotelsDao;
     @Property
     private List<Sobe> sveSobe;
-    @Property
-    @Persist
-    private List<Hoteli> sviHoteli;
+    @Inject
+    private HotelsDAO hd;
 
     void onActivate() {
         if (sveSobe == null) {
             sveSobe = new ArrayList<Sobe>();
         }
-        sveSobe = hotelsDao.getListaSvihSoba();
-    }
-
-    public String getIme() {
-        return hoteli.getIme();
+        sveSobe = hd.getListaSvihSoba();
     }
 
     @CommitAfter
     Object onSuccess() {
-        hotelsDao.dodajSobu(sobe);
+        hd.dodajIliUpdatujSobu(sobe);
+        sobe = new Sobe();
         return this;
+    }
+
+    @CommitAfter
+    Object onActionFromDelete(int id) {
+        hd.deleteSoba(id);
+        return this;
+    }
+
+    @CommitAfter
+    Object onActionFromEdit(Sobe sobee) {
+        sobe = sobee;
+        return this;
+    }
+
+    public JSONObject getOptions() {
+        JSONObject json = new JSONObject();
+        json.put("bJQueryUI", "true");
+        json.put("bStateSave", true);
+        json.put("bAutoWidth", true);
+        return json;
     }
 }

@@ -42,4 +42,15 @@ public class HotelsDaoImpl implements HotelsDAO {
         return (Hoteli) session.createCriteria(Hoteli.class).add(Restrictions.eq("ime",ime)).uniqueResult();
     }
 
+    @Override
+    public void dodajIliUpdatujSobu(Sobe sobe) {
+        session.merge(sobe);
+    }
+    
+    @Override
+    public void deleteSoba(Integer id) {
+        Sobe k = (Sobe) session.createCriteria(Sobe.class).add(Restrictions.eq("id", id)).uniqueResult();
+        session.delete(k);
+    }
+
 }

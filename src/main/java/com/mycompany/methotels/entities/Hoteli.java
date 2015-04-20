@@ -48,9 +48,6 @@ public class Hoteli implements Serializable {
     @Basic(optional = false)
     @Column(name = "TELEFON")
     private long telefon;
-    @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Sobe sobe;
 
     @Inject
     public Hoteli() {
@@ -100,15 +97,6 @@ public class Hoteli implements Serializable {
 
     public void setTelefon(long telefon) {
         this.telefon = telefon;
-    }
-
-    @Validate("required")
-    public Sobe getSobe() {
-        return sobe;
-    }
-
-    public void setSobe(Sobe sobe) {
-        this.sobe = sobe;
     }
 
     @Override

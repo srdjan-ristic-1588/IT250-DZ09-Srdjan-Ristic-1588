@@ -1,9 +1,11 @@
 package com.mycompany.methotels.services;
 
 import com.mycompany.methotels.interfaces.AdminDAO;
+import com.mycompany.methotels.interfaces.GenericDao;
 import com.mycompany.methotels.interfaces.HotelsDAO;
 import com.mycompany.methotels.interfaces.RezervacijeDAO;
 import com.mycompany.methotels.pages.AdminDaoImpl;
+import com.mycompany.methotels.pages.GenericDaoImpl;
 import com.mycompany.methotels.pages.HotelsDaoImpl;
 import com.mycompany.methotels.pages.RezervacijeDaoImpl;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class AppModule {
         binder.bind(HotelsDAO.class, HotelsDaoImpl.class);
         binder.bind(AdminDAO.class, AdminDaoImpl.class);
         binder.bind(RezervacijeDAO.class, RezervacijeDaoImpl.class);
+        binder.bind(GenericDao.class,GenericDaoImpl.class);
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
         // Make bind() calls on the binder object to define most IoC services.

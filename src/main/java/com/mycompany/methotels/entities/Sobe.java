@@ -5,21 +5,17 @@
  */
 package com.mycompany.methotels.entities;
 
+import com.mycompany.methotels.pages.AbstractEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.apache.tapestry5.beaneditor.Validate;
-import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  *
@@ -29,29 +25,18 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 @Table(name = "sobe")
 @NamedQueries({
     @NamedQuery(name = "Sobe.findAll", query = "SELECT s FROM Sobe s")})
-public class Sobe implements Serializable {
-
+public class Sobe extends AbstractEntity{
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
-    private Integer id;
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "Ime sobe")
-    private String imesobe;
+    @Column(name = "ImeSobe")
+    private String imeSobe;
     @Basic(optional = false)
     @Column(name = "Sprat")
     private int sprat;
     @Basic(optional = false)
-    @Lob
     @Column(name = "TvInternetDjakuzi")
     private String tvInternetDjakuzi;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sobe")
-    private Hoteli hoteli;
 
-    @Inject
     public Sobe() {
     }
 
@@ -59,9 +44,9 @@ public class Sobe implements Serializable {
         this.id = id;
     }
 
-    public Sobe(Integer id, String imesobe, int sprat, String tvInternetDjakuzi) {
+    public Sobe(Integer id, String imeSobe, int sprat, String tvInternetDjakuzi) {
         this.id = id;
-        this.imesobe = imesobe;
+        this.imeSobe = imeSobe;
         this.sprat = sprat;
         this.tvInternetDjakuzi = tvInternetDjakuzi;
     }
@@ -73,15 +58,15 @@ public class Sobe implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    @Validate("required")
-    public String getImesobe() {
-        return imesobe;
+
+    public String getImeSobe() {
+        return imeSobe;
     }
 
-    public void setImesobe(String imesobe) {
-        this.imesobe = imesobe;
+    public void setImeSobe(String imeSobe) {
+        this.imeSobe = imeSobe;
     }
-    @Validate("required")
+
     public int getSprat() {
         return sprat;
     }
@@ -89,21 +74,13 @@ public class Sobe implements Serializable {
     public void setSprat(int sprat) {
         this.sprat = sprat;
     }
-    @Validate("required")
+
     public String getTvInternetDjakuzi() {
         return tvInternetDjakuzi;
     }
 
     public void setTvInternetDjakuzi(String tvInternetDjakuzi) {
         this.tvInternetDjakuzi = tvInternetDjakuzi;
-    }
-
-    public Hoteli getHoteli() {
-        return hoteli;
-    }
-
-    public void setHoteli(Hoteli hoteli) {
-        this.hoteli = hoteli;
     }
 
     @Override
@@ -130,5 +107,5 @@ public class Sobe implements Serializable {
     public String toString() {
         return "com.mycompany.methotels.entities.Sobe[ id=" + id + " ]";
     }
-
+    
 }

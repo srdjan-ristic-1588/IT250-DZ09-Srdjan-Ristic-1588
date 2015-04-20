@@ -16,6 +16,8 @@ import java.util.List;
  */
 public interface HotelsDAO {
 
+    public void dodajIliUpdatujSobu(Sobe sobe);
+    
     public List<Sobe> getListaSvihSoba();
 
     public void dodajSobu(Sobe sobe);
@@ -23,4 +25,6 @@ public interface HotelsDAO {
     public List<Hoteli> getListaSvihHotela();
     
     public Hoteli getHotelIme(String ime);
+    
+    public void deleteSoba(Integer id);
 }
